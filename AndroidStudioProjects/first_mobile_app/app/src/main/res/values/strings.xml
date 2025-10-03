@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">first_mobile_app</string>
+    <string name="button_clicked">Butona tıkladın!</string>
+    <string name="button_label">Tıkla!</string>
+</resources>

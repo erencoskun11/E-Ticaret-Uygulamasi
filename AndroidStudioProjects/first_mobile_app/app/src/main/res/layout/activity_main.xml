@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <!-- Başlık TextView -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="To-Do List"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp"
+        android:contentDescription="Uygulama başlığı"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Görev girişi EditText -->
+    <EditText
+        android:id="@+id/editTextTask"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Yeni görev ekle..."
+        android:padding="12dp"
+        android:contentDescription="Görev girişi"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Görev ekleme butonu -->
+    <Button
+        android:id="@+id/buttonAddTask"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Görev Ekle"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/teal_700"
+        android:textSize="18sp"
+        android:contentDescription="Görev ekle butonu"
+        app:layout_constraintTop_toBottomOf="@id/editTextTask"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- ScrollView görevlerin listesi -->
+    <ScrollView
+        android:id="@+id/scrollViewTasks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        android:contentDescription="Kullanıcının eklediği görevler"
+        app:layout_constraintTop_toBottomOf="@id/buttonAddTask"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutTasks"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="yes">
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
