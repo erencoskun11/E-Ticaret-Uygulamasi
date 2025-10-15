@@ -1,5 +1,46 @@
-﻿bin/
+﻿# Visual Studio & .NET
+bin/
 obj/
 .vs/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+*.opendb
+*.VC.db
+
+# Rider / JetBrains
+.idea/
+
+# VSCode
+.vscode/
+
+# Build / outputs
+*.dll
+*.exe
+*.log
+
+# Node / npm
 node_modules/
+package-lock.json
+yarn.lock
+
+# Env
 .env
+
+# OneDrive temp / OS
+~$*
+Thumbs.db
+.DS_Store
+
+# Databases / other
+*.db
+*.sqlite
+
+# IDE / workspace / temp
+*.iml
+
+# Ignore publish / artifacts
+publish/
+dist/
+wwwroot/
