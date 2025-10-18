@@ -1,4 +1,5 @@
-﻿using ETicaretAPI.Application.Repositories.Products;
+﻿using ETicaretAPI.Application.Repositories.Customers;
+using ETicaretAPI.Application.Repositories.Products;
 using ETicaretAPI.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,14 +9,20 @@ public class ProductsController : ControllerBase
 {
     private readonly IProductReadRepository _productReadRepository;
     private readonly IProductWriteRepository _productWriteRepository;
-
-    public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
+    private readonly IOrderWriteRepository _orderWriteRepository;
+    public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository,IOrderWriteRepository orderWriteRepository)
     {
         _productReadRepository = productReadRepository;
         _productWriteRepository = productWriteRepository;
+        _orderWriteRepository = orderWriteRepository;
     }
 
-
+    [HttpGet]
+    public async Task Get()
+    {
+        await _productWriteRepository.AddAsync(new() { Name = "C Product", Price = 1.500F, Stock = 10, CreatedDate = DateTime.UtcNow });
+        await _productWriteRepository.SaveAsync();
+    }
 
 
 
