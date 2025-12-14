@@ -1,7 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ETicaretAPI.Application.Abstractions;
+﻿using ETicaretAPI.Application.Abstractions;
+using ETicaretAPI.Application.Repositories.Customers;
+using ETicaretAPI.Application.Repositories.Products;
 using ETicaretAPI.Persistence.Concretes;
 using ETicaretAPI.Persistence.Contexts;
+using ETicaretAPI.Persistence.Repositories.Customers;
+using ETicaretAPI.Persistence.Repositories.Orders;
+using ETicaretAPI.Persistence.Repositories.Products;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,13 +20,22 @@ namespace ETicaretAPI.Persistence
     public static class ServiceRegistration
     {
         public static void AddPersistenceServices(
-            this IServiceCollection services)
+             this IServiceCollection services,
+             IConfiguration configuration)   
         {
-            services.AddSingleton<IProductService, ProductService>();
+            
+            services.AddScoped<IProductService, ProductService>();
 
-            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql
-            ("User ID=root;Password=myPassword;Host=localhost;Port=5432;Database=ETicaretAPIDb;"));
-        
+            var conn = configuration.GetConnectionString("PostgreSQL");
+            services.AddDbContext<ETicaretAPIDbContext>(options =>
+                options.UseNpgsql(conn));
+
+            services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+            services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+            services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+            services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+            services.AddScoped<IProductReadRepository, ProductReadRepository>();
+            services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
         }
     }
 }
