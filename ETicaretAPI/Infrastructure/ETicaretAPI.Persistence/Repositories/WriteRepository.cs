@@ -18,7 +18,7 @@ namespace ETicaretAPI.Persistence.Repositories
         {
                 _context = context;
         }
-        public DbSet<T> Table => _context.Set<T>(); 
+        public virtual DbSet<T> Table => _context.Set<T>(); 
 
         public async Task<bool> AddAsync(T model)
         {
